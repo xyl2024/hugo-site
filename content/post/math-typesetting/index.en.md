@@ -1,31 +1,31 @@
 ---
 author: Hugo Authors
-title: 数学排版
+title: Math Typesetting
 date: 2019-03-08
-description: KaTeX设置简要指南
+description: A brief guide to setup KaTeX
 math: true
 draft: true
 ---
 
-Hugo项目中的数学符号可以通过使用第三方JavaScript库来启用。
+Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.
 <!--more-->
 
-在这个例子中，我们将使用 [KaTeX](https://katex.org/)。
+In this example we will be using [KaTeX](https://katex.org/)
 
-
-- 在`/layouts/partials/math.html`下创建一个部分
-- 在这个部分引用中，[自动渲染扩展](https://katex.org/docs/autorender.html)或本地托管这些脚本。
-- 在模板中包含部分，如下所示： 
+- Create a partial under `/layouts/partials/math.html`
+- Within this partial reference the [Auto-render Extension](https://katex.org/docs/autorender.html) or host these scripts locally.
+- Include the partial in your templates like so:  
 
 ```bash
 {{ if or .Params.math .Site.Params.math }}
 {{ partial "math.html" . }}
 {{ end }}
 ```
-- 要在全局启用KaTeX，请在项目的配置中将参数`math`设置为`true`。
-- 要在每页的基础上启用KaTeX，请在内容文件中包含参数`math：true`。
 
-**注意**：使用[支持的TeX函数](https://katex.org/docs/supported.html)在线参考。
+- To enable KaTeX globally set the parameter `math` to `true` in a project's configuration
+- To enable KaTeX on a per page basis include the parameter `math: true` in content files
+
+**Note:** Use the online reference of [Supported TeX Functions](https://katex.org/docs/supported.html)
 
 {{< math.inline >}}
 {{ if or .Page.Params.math .Site.Params.math }}
@@ -36,11 +36,11 @@ Hugo项目中的数学符号可以通过使用第三方JavaScript库来启用。
 {{ end }}
 {{</ math.inline >}}
 
-### 例子
+### Examples
 
-行内数学公式：$\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$
+Inline math: $\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$
 
-块数学公式：
+Block math:
 $$
  \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } 
 $$

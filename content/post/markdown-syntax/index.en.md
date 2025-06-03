@@ -1,8 +1,8 @@
 +++
 author = "Hugo Authors"
-title = "Markdown 语法指南"
+title = "Markdown Syntax Guide"
 date = "2019-03-11"
-description = "展示基本 Markdown 语法和 HTML 元素格式的示例文章。"
+description = "Sample article showcasing basic Markdown syntax and formatting for HTML elements."
 tags = [
     "markdown",
     "css",
@@ -19,12 +19,12 @@ image = "pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg"
 draft = true
 +++
 
-本文提供了一个基本的 Markdown 语法示例，该示例可以在 Hugo 内容文件中使用，同时它还显示了基本 HTML 元素是否在 Hugo 主题中使用 CSS 进行装饰。
+This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.
 <!--more-->
 
-## 标题
+## Headings
 
-以下 HTML 元素 `<h1>`—`<h6>` 代表六个级别的章节标题。`<h1>` 是最高级别的章节，而`<h6>`是最低级别的章节。
+The following HTML `<h1>`—`<h6>` elements represent six levels of section headings. `<h1>` is the highest section level while `<h6>` is the lowest.
 
 # H1
 ## H2
@@ -33,36 +33,38 @@ draft = true
 ##### H5
 ###### H6
 
-## 段落
+## Paragraph
 
-Xerum，那些解释了痛苦和劳动的人。还有那些充满活力、追求快乐的人，他们是否也经历了痛苦和挣扎？有些人认为，幸福是通过努力和坚持获得的，而另一些人则认为，幸福是通过享受生活中的美好事物来实现的。那么，什么是真正的幸福呢？有些人认为，幸福是一种内在的感觉，而另一些人则认为，幸福是通过外部因素来实现的。那么，幸福到底是什么？有些人认为，幸福是一种选择，而另一些人则认为，幸福是通过努力和坚持来实现的。那么，幸福到底是什么？ 
+Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.
 
-## 引用
+Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.
 
-blockquote 元素表示从其他来源引用的内容，可选地带有引用，引用必须在`footer`或`cite`元素内，并且可选地带有注释和缩写等内联更改。 
+## Blockquotes
 
-#### 没有出处的引用
+The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a `footer` or `cite` element, and optionally with in-line changes such as annotations and abbreviations.
+
+#### Blockquote without attribution
 
 > Tiam, ad mint andaepu dandae nostion secatur sequo quae.
 > **Note** that you can use *Markdown syntax* within a blockquote.
 
-#### 带有引用的块引用
+#### Blockquote with attribution
 
 > Don't communicate by sharing memory, share memory by communicating.<br>
 > — <cite>Rob Pike[^1]</cite>
 
 [^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
 
-## 表格
+## Tables
 
-表格不是核心 Markdown 规范的一部分，但Hugo支持开箱即用。
+Tables aren't part of the core Markdown spec, but Hugo supports supports them out-of-the-box.
 
    Name | Age
 --------|------
     Bob | 27
   Alice | 23
 
-#### 表格内的内联Markdown
+#### Inline Markdown within tables
 
 | Italics   | Bold     | Code   |
 | --------  | -------- | ------ |
@@ -72,9 +74,9 @@ blockquote 元素表示从其他来源引用的内容，可选地带有引用，
 |----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|------------------------------------------------------------|----------------------------------------------------------------------|
 | Lorem ipsum dolor sit amet, consectetur adipiscing elit. | Phasellus ultricies, sapien non euismod aliquam, dui ligula tincidunt odio, at accumsan nulla sapien eget ex. | Proin eleifend dictum ipsum, non euismod ipsum pulvinar et. Vivamus sollicitudin, quam in pulvinar aliquam, metus elit pretium purus | Proin sit amet velit nec enim imperdiet vehicula. | Ut bibendum vestibulum quam, eu egestas turpis gravida nec | Sed scelerisque nec turpis vel viverra. Vivamus vitae pretium sapien |
 
-## 代码块
+## Code Blocks
 
-#### 带有反引号的代码块
+#### Code block with backticks
 
 ```html
 <!doctype html>
@@ -89,7 +91,7 @@ blockquote 元素表示从其他来源引用的内容，可选地带有引用，
 </html>
 ```
 
-#### 代码块缩进四个空格
+#### Code block indented with four spaces
 
     <!doctype html>
     <html lang="en">
@@ -102,7 +104,7 @@ blockquote 元素表示从其他来源引用的内容，可选地带有引用，
     </body>
     </html>
 
-#### 带有 Hugo 内部高亮简码的代码块
+#### Code block with Hugo's internal highlight shortcode
 {{< highlight html >}}
 <!doctype html>
 <html lang="en">
@@ -116,7 +118,7 @@ blockquote 元素表示从其他来源引用的内容，可选地带有引用，
 </html>
 {{< /highlight >}}
 
-#### 差异代码块
+#### Diff code block
 
 ```diff
 [dependencies.bevy]
@@ -126,42 +128,42 @@ rev = "11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13"
 + features = ["jpeg", "dynamic"]
 ```
 
-## 列表类型
+## List Types
 
-#### 有序列表
+#### Ordered List
 
-1. 第一项
-2. 第二项
-3. 第三项
+1. First item
+2. Second item
+3. Third item
 
-#### 无序列表
+#### Unordered List
 
-* 哈基米
-* 米基哈
+* List item
+* Another item
+* And another item
 
-#### 嵌套列表
+#### Nested list
 
-* 水果
-  * 苹果🍎
-  * 橙子🍊
-  * 香蕉🍌
-* 乳制品
-  * 牛奶🥛
-  * 奶酪🧀
+* Fruit
+  * Apple
+  * Orange
+  * Banana
+* Dairy
+  * Milk
+  * Cheese
 
-## 其他元素 —— 缩写、下标、上标、键盘输入、标记
+## Other Elements — abbr, sub, sup, kbd, mark
 
-<abbr title="Graphics Interchange Format">GIF</abbr> 是一种位图图像格式。
+<abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
 
 H<sub>2</sub>O
 
 X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 
-按下 <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> 以结束会话。
+Press <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> to end the session.
 
+Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
 
-大多数<mark>蝾螈</mark>是夜行动物，捕食昆虫、蠕虫和其他小型生物。 
-
-## 超链接图像
+## Hyperlinked image
 
 [![Baidu](https://img.tukuppt.com/png_preview/00/10/46/IHk8cns6Re.jpg!/fw/780)](https://www.baidu.com)
