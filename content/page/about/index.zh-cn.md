@@ -44,13 +44,13 @@ menu:
 嗨！我是一个热爱编程、热爱AI的开发者，也是一个永远对新技术充满好奇心的终身学习者。
 
 <details style="margin: 10px 0; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px; background: #f9fafb;">
-<summary style="cursor: pointer; font-weight: bold; padding: 5px 0;">🎯 我的开发哲学</summary>
+<summary style="cursor: pointer; font-weight: bold; padding: 5px 0; color:rgb(27, 25, 25);">🎯 我的开发哲学</summary>
 <div style="margin-top: 10px; padding-left: 20px;">
   <ul>
-    <li><strong>简洁至上:</strong> 最好的代码是不需要写的代码</li>
-    <li><strong>用户导向:</strong> 技术服务于人，而非人服务于技术</li>
-    <li><strong>持续学习:</strong> 保持好奇心，拥抱变化</li>
-    <li><strong>分享精神:</strong> 知识因分享而增值</li>
+    <li style="color:rgb(27, 25, 25);"><strong>简洁至上：</strong> 最好的代码是不需要写的代码</li>
+    <li style="color:rgb(27, 25, 25);"><strong>用户导向：</strong> 技术服务于人，而非人服务于技术</li>
+    <li style="color:rgb(27, 25, 25);"><strong>持续学习：</strong> 保持好奇心，拥抱变化</li>
+    <li style="color:rgb(27, 25, 25);"><strong>分享精神：</strong> 知识因分享而增值</li>
   </ul>
 </div>
 </details>
@@ -60,25 +60,25 @@ menu:
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
   <div style="text-align: center; padding: 20px; border-radius: 10px; background: #fef7ff; border: 1px solid #f3e8ff;">
     <div style="font-size: 2em; margin-bottom: 10px;">🎮</div>
-    <p><strong>游戏</strong></p>
+    <p style="color:rgb(27, 25, 25);"><strong>游戏</strong></p>
     <p style="color: #6b7280; font-size: 0.9em;">独立游戏爱好者，偶尔也会尝试制作小游戏；塞尔达是天！</p>
   </div>
 
   <div style="text-align: center; padding: 20px; border-radius: 10px; background: #f0f9ff; border: 1px solid #e0f2fe;">
     <div style="font-size: 2em; margin-bottom: 10px;">📺</div>
-    <p><strong>二次元</strong></p>
+    <p style="color:rgb(27, 25, 25);"><strong>二次元</strong></p>
     <p style="color: #6b7280; font-size: 0.9em;">日本动画爱好者，“资深”二次元</p>
   </div>
   
   <div style="text-align: center; padding: 20px; border-radius: 10px; background: #f0fdf4; border: 1px solid #dcfce7;">
     <div style="font-size: 2em; margin-bottom: 10px;">🎨</div>
-    <p><strong>绘画</strong></p>
+    <p style="color:rgb(27, 25, 25);"><strong>绘画</strong></p>
     <p style="color: #6b7280; font-size: 0.9em;">偶尔画点板绘</p>
   </div>
   
   <div style="text-align: center; padding: 20px; border-radius: 10px; background:rgb(249, 253, 240); border: 1px solid #dcfce7;">
     <div style="font-size: 2em; margin-bottom: 10px;">🎵</div>
-    <p><strong>音乐</strong></p>
+    <p style="color:rgb(27, 25, 25);"><strong>音乐</strong></p>
     <p style="color: #6b7280; font-size: 0.9em;">YOASOBI、米津玄师、milet……</p>
   </div>
 </div>
