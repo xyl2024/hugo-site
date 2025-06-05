@@ -13,13 +13,13 @@ DefaultContentLanguage: zh-cn
 hasCJKLanguage: true
 
 languages:
-    en:
-        languageName: English
-        title: MijiHa's personal website
-        weight: 1
-        params:
-            sidebar:
-                subtitle: Writing a blog when I'm bored out of my mind.
+    # en:
+    #     languageName: English
+    #     title: MijiHa's personal website
+    #     weight: 1
+    #     params:
+    #         sidebar:
+    #             subtitle: Writing a blog when I'm bored out of my mind.
     zh-cn:
         languageName: 中文
         title: 米基哈的个人小站
@@ -169,7 +169,7 @@ params:
     # 玩这个!
     widgets:
         homepage:
-            - type: search
+            # - type: search
             - type: archives
               params:
                   limit: 5

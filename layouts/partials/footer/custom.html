@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑色小猫咪</title>
+    <style>
+        .cat-container {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .cat-body {
+            position: relative;
+            width: 40px;
+            height: 25px;
+            background: #2d3436;
+            border-radius: 15px 15px 10px 10px;
+            margin: 20px auto 0;
+        }
+
+        .cat-head {
+            position: absolute;
+            width: 30px;
+            height: 25px;
+            background: #2d3436;
+            border-radius: 50% 50% 40% 40%;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cat-ear {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid #2d3436;
+            top: -5px;
+        }
+
+        .cat-ear.left {
+            left: 6px;
+            transform: rotate(-10deg);
+        }
+
+        .cat-ear.right {
+            right: 6px;
+            transform: rotate(10deg);
+        }
+
+        .cat-eyes {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+        }
+
+        .cat-eye {
+            width: 4px;
+            height: 4px;
+            background: #00b894;
+            border-radius: 50%;
+            animation: blink 4s infinite;
+        }
+
+        @keyframes blink {
+            0%, 90%, 100% { 
+                height: 4px; 
+                background: #00b894;
+            }
+            95% { 
+                height: 1px; 
+                background: #2d3436;
+            }
+        }
+
+        .cat-nose {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fd79a8;
+            border-radius: 50%;
+            top: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cat-legs {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .cat-leg {
+            width: 5px;
+            height: 10px;
+            background: #2d3436;
+            border-radius: 2px;
+        }
+
+        .cat-tail {
+            position: absolute;
+            width: 20px;
+            height: 5px;
+            background: #2d3436;
+            border-radius: 8px;
+            right: -15px;
+            top: 10px;
+            transform-origin: left center;
+            animation: wag-tail 2s ease-in-out infinite;
+        }
+
+        @keyframes wag-tail {
+            0%, 100% { transform: rotate(15deg); }
+            50% { transform: rotate(-15deg); }
+        }
+
+        /* 走路动画 */
+        .cat-container.walking .cat-body {
+            animation: walk-bounce 0.8s ease-in-out infinite;
+        }
+
+        .cat-container.walking .cat-legs {
+            animation: walk-legs 0.8s ease-in-out infinite;
+        }
+
+        @keyframes walk-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        @keyframes walk-legs {
+            0%, 100% { transform: translateX(-50%) scaleX(1); }
+            50% { transform: translateX(-50%) scaleX(0.8); }
+        }
+
+        /* 坐下状态 */
+        .cat-container.sitting .cat-body {
+            height: 20px;
+            border-radius: 15px 15px 3px 3px;
+        }
+
+        .cat-container.sitting .cat-legs {
+            display: none;
+        }
+
+        .cat-container.sitting .cat-tail {
+            animation: gentle-wag 3s ease-in-out infinite;
+            right: -12px;
+            top: 12px;
+        }
+
+        @keyframes gentle-wag {
+            0%, 100% { transform: rotate(10deg); }
+            50% { transform: rotate(-5deg); }
+        }
+
+        /* 睡觉状态 */
+        .cat-container.sleeping .cat-eyes .cat-eye {
+            height: 1px;
+            background: #2d3436;
+            animation: none;
+        }
+
+        .cat-container.sleeping .cat-body {
+            animation: sleep-breathe 3s ease-in-out infinite;
+        }
+
+        .cat-container.sleeping .cat-tail {
+            animation: none;
+            transform: rotate(-10deg);
+        }
+
+        @keyframes sleep-breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* 清洁状态 */
+        .cat-container.cleaning .cat-head {
+            animation: cleaning-head 2s ease-in-out infinite;
+        }
+
+        @keyframes cleaning-head {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-50%) rotate(-15deg); }
+            50% { transform: translateX(-50%) rotate(0deg); }
+            75% { transform: translateX(-50%) rotate(15deg); }
+        }
+
+        /* 消息气泡 */
+        .message-bubble {
+            position: absolute;
+            background: rgba(45, 52, 54, 0.9);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-family: Arial, sans-serif;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .message-bubble.show {
+            opacity: 1;
+        }
+
+        .message-bubble::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: rgba(45, 52, 54, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="cat-container" id="catContainer">
+        <div class="message-bubble" id="messageBubble">喵~</div>
+        
+        <div class="cat-body">
+            <div class="cat-head">
+                <div class="cat-ear left"></div>
+                <div class="cat-ear right"></div>
+                
+                <div class="cat-eyes">
+                    <div class="cat-eye"></div>
+                    <div class="cat-eye"></div>
+                </div>
+                
+                <div class="cat-nose"></div>
+            </div>
+            
+            <div class="cat-legs">
+                <div class="cat-leg"></div>
+                <div class="cat-leg"></div>
+            </div>
+            
+            <div class="cat-tail"></div>
+        </div>
+    </div>
+
+    <script>
+        class BlackCat {
+            constructor() {
+                this.container = document.getElementById('catContainer');
+                this.messageBubble = document.getElementById('messageBubble');
+                
+                // 活动范围设定为右下角区域
+                this.minX = window.innerWidth - 300;
+                this.maxX = window.innerWidth - 80;
+                this.minY = window.innerHeight - 200;
+                this.maxY = window.innerHeight - 80;
+                
+                this.x = this.maxX - 50;
+                this.y = this.maxY - 50;
+                this.targetX = this.x;
+                this.targetY = this.y;
+                
+                this.state = 'idle';
+                this.isMoving = false;
+                
+                this.messages = {
+                    idle: ['喵~', '...', '呼噜'],
+                    happy: ['🐾', '喵喵', '♡'],
+                    sleepy: ['zZ..', '呼~', '困困'],
+                    alert: ['!', '？', '喵？']
+                };
+                
+                this.behaviors = ['walk', 'sit', 'sleep', 'clean'];
+                
+                this.init();
+            }
+            
+            init() {
+                this.updatePosition();
+                this.startBehaviorCycle();
+                
+                // 点击交互
+                this.container.addEventListener('click', () => {
+                    this.onPet();
+                });
+                
+                // 窗口大小改变时更新活动范围
+                window.addEventListener('resize', () => {
+                    this.updateBounds();
+                });
+            }
+            
+            updateBounds() {
+                this.minX = window.innerWidth - 300;
+                this.maxX = window.innerWidth - 80;
+                this.minY = window.innerHeight - 200;
+                this.maxY = window.innerHeight - 80;
+                
+                // 确保当前位置在有效范围内
+                this.x = Math.max(this.minX, Math.min(this.maxX, this.x));
+                this.y = Math.max(this.minY, Math.min(this.maxY, this.y));
+                this.updatePosition();
+            }
+            
+            updatePosition() {
+                this.container.style.left = this.x + 'px';
+                this.container.style.top = this.y + 'px';
+            }
+            
+            setState(newState) {
+                this.container.className = `cat-container ${newState}`;
+                this.state = newState;
+            }
+            
+            showMessage(message, duration = 2000) {
+                this.messageBubble.textContent = message;
+                this.messageBubble.classList.add('show');
+                setTimeout(() => {
+                    this.messageBubble.classList.remove('show');
+                }, duration);
+            }
+            
+            getRandomMessage(type) {
+                const messages = this.messages[type] || this.messages.idle;
+                return messages[Math.floor(Math.random() * messages.length)];
+            }
+            
+            moveTo(targetX, targetY) {
+                if (this.isMoving) return;
+                
+                this.targetX = Math.max(this.minX, Math.min(this.maxX, targetX));
+                this.targetY = Math.max(this.minY, Math.min(this.maxY, targetY));
+                
+                this.isMoving = true;
+                this.setState('walking');
+                
+                const moveInterval = setInterval(() => {
+                    const dx = this.targetX - this.x;
+                    const dy = this.targetY - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 3) {
+                        this.x = this.targetX;
+                        this.y = this.targetY;
+                        this.updatePosition();
+                        this.setState('idle');
+                        this.isMoving = false;
+                        clearInterval(moveInterval);
+                    } else {
+                        this.x += dx * 0.08;
+                        this.y += dy * 0.08;
+                        this.updatePosition();
+                    }
+                }, 50);
+            }
+            
+            randomWalk() {
+                const newX = this.minX + Math.random() * (this.maxX - this.minX);
+                const newY = this.minY + Math.random() * (this.maxY - this.minY);
+                this.moveTo(newX, newY);
+            }
+            
+            sit() {
+                this.setState('sitting');
+                setTimeout(() => {
+                    if (this.state === 'sitting') {
+                        this.setState('idle');
+                    }
+                }, 3000 + Math.random() * 4000);
+            }
+            
+            sleep() {
+                this.setState('sleeping');
+                this.showMessage(this.getRandomMessage('sleepy'), 1500);
+                
+                setTimeout(() => {
+                    if (this.state === 'sleeping') {
+                        this.setState('idle');
+                        this.showMessage('喵~');
+                    }
+                }, 8000 + Math.random() * 7000);
+            }
+            
+            clean() {
+                this.setState('cleaning');
+                setTimeout(() => {
+                    if (this.state === 'cleaning') {
+                        this.setState('idle');
+                    }
+                }, 3000 + Math.random() * 2000);
+            }
+            
+            onPet() {
+                if (this.state === 'sleeping') {
+                    this.setState('idle');
+                    this.showMessage(this.getRandomMessage('alert'));
+                } else {
+                    this.showMessage(this.getRandomMessage('happy'));
+                    // 短暂兴奋动画
+                    this.container.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        this.container.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            }
+            
+            startBehaviorCycle() {
+                const performBehavior = () => {
+                    if (this.isMoving) {
+                        setTimeout(performBehavior, 2000);
+                        return;
+                    }
+                    
+                    const behavior = this.behaviors[Math.floor(Math.random() * this.behaviors.length)];
+                    
+                    switch (behavior) {
+                        case 'walk':
+                            this.randomWalk();
+                            break;
+                        case 'sit':
+                            this.sit();
+                            break;
+                        case 'sleep':
+                            this.sleep();
+                            break;
+                        case 'clean':
+                            this.clean();
+                            break;
+                    }
+                    
+                    // 随机间隔执行下一个行为
+                    const nextInterval = 3000 + Math.random() * 8000;
+                    setTimeout(performBehavior, nextInterval);
+                };
+                
+                // 初始延迟
+                setTimeout(performBehavior, 2000);
+            }
+        }
+        
+        // 页面加载完成后初始化小猫
+        window.addEventListener('load', () => {
+            new BlackCat();
+        });
+    </script>
+</body>
+</html>
